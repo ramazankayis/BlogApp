@@ -1,3 +1,5 @@
+using BlogApp.Data.Abstract;
+using BlogApp.Data.Concrete;
 using BlogApp.Data.Concrete.EFCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -17,6 +19,9 @@ builder.Services.AddDbContext<BlogContext>(options =>
     //options.UseMySql(connectionString, version);
 
 });
+
+builder.Services.AddScoped<IPostRepository, EfPostRepository>();
+
 var app = builder.Build();
 SeedData.TestVerileriniDoldur(app);
 
